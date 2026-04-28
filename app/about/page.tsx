@@ -5,7 +5,13 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { FadeUp, FadeIn, FadeInStagger, FadeInItem, ScaleIn } from "@/components/motion";
+import {
+  FadeUp,
+  FadeIn,
+  FadeInStagger,
+  FadeInItem,
+  ScaleIn,
+} from "@/components/motion";
 import { motion } from "motion/react";
 import {
   Globe,
@@ -87,7 +93,10 @@ function generateSpectrum(tick: number): number[] {
     const peak3 = Math.exp(-Math.pow((x - 0.34) * 18, 2)) * 0.24;
     const noise = (Math.random() - 0.5) * 0.05;
     const breathe = Math.sin(tick * 0.05 + i * 0.35) * 0.025;
-    return Math.min(0.97, Math.max(0.02, peak1 + peak2 + peak3 + noise + breathe + 0.04));
+    return Math.min(
+      0.97,
+      Math.max(0.02, peak1 + peak2 + peak3 + noise + breathe + 0.04),
+    );
   });
 }
 
@@ -158,15 +167,22 @@ export default function AboutPage() {
 
         {/* ── Stat Cards ───────────────────────────────────────── */}
         <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <FadeInStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6" stagger={0.1}>
+          <FadeInStagger
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6"
+            stagger={0.1}
+          >
             {statCards.map(({ Icon, title, description }) => (
               <FadeInItem key={title}>
                 <div className="bg-[#0A0A0A] border border-[#1A1A1A] rounded-2xl p-7 sm:p-8 hover:bg-[#111] hover:border-white/10 transition-all group hover:-translate-y-1 duration-300 h-full">
                   <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center mb-8 border border-white/5 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all">
                     <Icon className="w-5 h-5 text-[#0066FF]" />
                   </div>
-                  <h3 className="text-xl font-medium text-white mb-3">{title}</h3>
-                  <p className="text-neutral-400 leading-relaxed text-sm">{description}</p>
+                  <h3 className="text-xl font-medium text-white mb-3">
+                    {title}
+                  </h3>
+                  <p className="text-neutral-400 leading-relaxed text-sm">
+                    {description}
+                  </p>
                 </div>
               </FadeInItem>
             ))}
@@ -192,7 +208,7 @@ export default function AboutPage() {
           <ScaleIn delay={0.1}>
             <div className="relative w-full h-56 sm:h-72 md:h-[450px] rounded-[32px] overflow-hidden mb-8 border border-[#1A1A1A]">
               <Image
-                src="/lab.png"
+                src="https://images.unsplash.com/photo-1650473395434-8674d953ef2f?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Wavemetrik Innovation Lab"
                 fill
                 quality={100}
@@ -202,15 +218,22 @@ export default function AboutPage() {
             </div>
           </ScaleIn>
 
-          <FadeInStagger className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6" stagger={0.1}>
+          <FadeInStagger
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6"
+            stagger={0.1}
+          >
             {valueCards.map(({ Icon, title, description }) => (
               <FadeInItem key={title}>
                 <div className="bg-[#0A0A0A] border border-[#1A1A1A] rounded-2xl p-6 hover:border-white/10 transition-all hover:-translate-y-1 duration-300 h-full">
                   <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-5">
                     <Icon className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="text-lg font-medium text-white mb-2">{title}</h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed mb-4">{description}</p>
+                  <h3 className="text-lg font-medium text-white mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-neutral-400 text-sm leading-relaxed mb-4">
+                    {description}
+                  </p>
                   <button className="text-[13px] font-medium text-[#0066FF] hover:text-white transition-colors flex items-center gap-1">
                     Learn more <ArrowRight size={14} />
                   </button>
@@ -239,7 +262,9 @@ export default function AboutPage() {
                 {globalBullets.map(({ label }) => (
                   <div key={label} className="flex items-center gap-3">
                     <Check size={18} className="text-[#0066FF]" />
-                    <span className="text-sm md:text-base font-medium text-white">{label}</span>
+                    <span className="text-sm md:text-base font-medium text-white">
+                      {label}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -254,7 +279,9 @@ export default function AboutPage() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
                     </span>
-                    <span className="text-green-400 text-[10px] font-mono tracking-widest">LIVE SWEEP</span>
+                    <span className="text-green-400 text-[10px] font-mono tracking-widest">
+                      LIVE SWEEP
+                    </span>
                   </div>
                 </div>
                 <div className="relative flex-1 flex items-end gap-px px-0 pb-0 z-10">
@@ -262,7 +289,10 @@ export default function AboutPage() {
                     <div
                       key={i}
                       className="flex-1"
-                      style={{ height: `${h * 92}%`, transition: "height 70ms linear" }}
+                      style={{
+                        height: `${h * 92}%`,
+                        transition: "height 70ms linear",
+                      }}
                     >
                       <div
                         className="w-full h-full rounded-t-sm"
@@ -292,18 +322,37 @@ export default function AboutPage() {
                 Wavemetrik
               </h2>
               <p className="text-neutral-400 mt-6 text-base md:text-lg">
-                A dedicated team of innovators, engineers and visionaries leading
-                the future of tech.
+                A dedicated team of innovators, engineers and visionaries
+                leading the future of tech.
               </p>
             </div>
           </FadeUp>
 
-          <FadeInStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6" stagger={0.08}>
+          <FadeInStagger
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
+            stagger={0.08}
+          >
             {[
-              { title: "MT-C24", desc: "Wi-Fi 7 Client Emulation", icon: Server },
-              { title: "MT-Wave", desc: "Interference Generation", icon: Radio },
-              { title: "RF Signal Analysis", desc: "Thorough device validation", icon: Activity },
-              { title: "Network Performance", desc: "End-to-end testing", icon: Globe },
+              {
+                title: "MT-C24",
+                desc: "Wi-Fi 7 Client Emulation",
+                icon: Server,
+              },
+              {
+                title: "MT-Wave",
+                desc: "Interference Generation",
+                icon: Radio,
+              },
+              {
+                title: "RF Signal Analysis",
+                desc: "Thorough device validation",
+                icon: Activity,
+              },
+              {
+                title: "Network Performance",
+                desc: "End-to-end testing",
+                icon: Globe,
+              },
             ].map((item) => (
               <FadeInItem key={item.title}>
                 <div className="group relative rounded-2xl overflow-hidden bg-[#0A0A0A] border border-[#1A1A1A] hover:border-white/10 transition-all hover:-translate-y-1 duration-300">
@@ -321,57 +370,17 @@ export default function AboutPage() {
                     })()}
                   </div>
                   <div className="p-5 sm:p-6">
-                    <h3 className="font-medium text-white mb-2 text-base sm:text-lg">{item.title}</h3>
-                    <p className="text-sm text-neutral-500 leading-relaxed">{item.desc}</p>
+                    <h3 className="font-medium text-white mb-2 text-base sm:text-lg">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-neutral-500 leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               </FadeInItem>
             ))}
           </FadeInStagger>
-        </section>
-
-        {/* ── Sustainability / Commitment ──────────────────────── */}
-        <section className="py-20 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeUp>
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight mb-6">
-                Our commitment
-              </h2>
-              <p className="text-neutral-400 max-w-2xl mx-auto text-base md:text-lg">
-                We are committed to making decisions that are good for the planet
-                and the future. We work towards a sustainable and responsible
-                business model.
-              </p>
-            </div>
-          </FadeUp>
-
-          <ScaleIn delay={0.1}>
-            <div className="flex flex-col md:flex-row items-center gap-10 bg-[#0A0A0A] border border-[#1A1A1A] rounded-3xl p-7 sm:p-8 md:p-12">
-              <div className="md:w-1/3 flex flex-col items-center text-center border-b md:border-b-0 md:border-r border-[#1A1A1A] pb-10 md:pb-0 md:pr-10">
-                <div className="w-20 h-20 rounded-full bg-[#0066FF]/10 flex items-center justify-center mb-6 border border-[#0066FF]/20">
-                  <Leaf className="text-[#0066FF]" size={32} />
-                </div>
-                <h3 className="text-white font-medium text-xl mb-2">Sustainability</h3>
-                <p className="text-neutral-500 text-sm">A responsible future</p>
-                <div className="mt-8 flex gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#0066FF]"></div>
-                  <div className="w-2 h-2 rounded-full bg-white/20"></div>
-                </div>
-              </div>
-              <div className="md:w-2/3">
-                <ul className="space-y-6">
-                  {commitmentPoints.map((point) => (
-                    <li key={point} className="flex items-start gap-4">
-                      <span className="mt-1 w-6 h-6 rounded-full bg-[#1A1A1A] border border-[#222] flex items-center justify-center shrink-0">
-                        <Check size={12} className="text-[#0066FF]" />
-                      </span>
-                      <span className="text-neutral-300 text-base md:text-lg leading-relaxed">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </ScaleIn>
         </section>
 
         {/* ── CTA ──────────────────────────────────────────────── */}
@@ -387,7 +396,8 @@ export default function AboutPage() {
                 style={{
                   background:
                     "linear-gradient(180deg, transparent 0%, rgba(0,50,160,0.05) 15%, rgba(0,80,210,0.09) 50%, rgba(0,50,160,0.05) 85%, transparent 100%)",
-                  borderRight: i < 7 ? "1px solid rgba(255,255,255,0.025)" : "none",
+                  borderRight:
+                    i < 7 ? "1px solid rgba(255,255,255,0.025)" : "none",
                 }}
               />
             ))}
@@ -404,9 +414,10 @@ export default function AboutPage() {
             </FadeUp>
             <FadeUp delay={0.1}>
               <p className="text-neutral-400 text-base md:text-lg mb-12 max-w-2xl mx-auto">
-                We believe in the power of collaboration. Let's team up and create
-                something extraordinary together. If you're interested in working
-                with us, we'd love to discuss how we can bring your ideas to life.
+                We believe in the power of collaboration. Let's team up and
+                create something extraordinary together. If you're interested in
+                working with us, we'd love to discuss how we can bring your
+                ideas to life.
               </p>
             </FadeUp>
             <FadeUp delay={0.18}>
