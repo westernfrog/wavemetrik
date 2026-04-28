@@ -22,13 +22,12 @@ function XIcon() {
 }
 
 const solutions = [
-  { label: "MT-C24", tag: "Wi-Fi 7", href: "/products/mt-c24" },
+  { label: "Wifi Test Systems", tag: "Wi-Fi 7", href: "/products/mt-c24" },
   { label: "MT-Wave", tag: "Interference Gen", href: "/products/mt-wave" },
 ];
 
 const companyLinks = [
   { label: "About Us", href: "/about" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -42,7 +41,6 @@ export default function Footer() {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[radial-gradient(ellipse_at_bottom,rgba(0,102,255,0.07),transparent)] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* ── Statement section ───────────────────────── */}
         <FadeUp>
           <div className="pt-20 sm:pt-24 pb-14 sm:pb-16 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 border-b border-white/[0.05]">
@@ -80,7 +78,6 @@ export default function Footer() {
 
         {/* ── Link grid ──────────────────────────────── */}
         <div className="py-14 sm:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/[0.05]">
-
           {/* Brand + contact */}
           <FadeUp delay={0.05} className="space-y-8">
             <Link href="/" className="inline-flex items-center gap-3 group">
@@ -94,25 +91,31 @@ export default function Footer() {
             </Link>
             <div className="space-y-4">
               <a
-                href="mailto:support@wavemetrik.com"
+                href="mailto:sales@wavemetrik.com"
                 className="flex items-center gap-3 group"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.07] flex items-center justify-center shrink-0 group-hover:border-blue-500/30 group-hover:bg-blue-500/5 transition-all">
-                  <Mail size={13} className="text-neutral-500 group-hover:text-blue-400 transition-colors" />
+                  <Mail
+                    size={13}
+                    className="text-neutral-500 group-hover:text-blue-400 transition-colors"
+                  />
                 </div>
                 <span className="text-[13px] text-neutral-500 group-hover:text-white transition-colors leading-snug">
-                  support@wavemetrik.com
+                  sales@wavemetrik.com
                 </span>
               </a>
               <a
-                href="tel:+918041643659"
+                href="tel:+917899669501"
                 className="flex items-center gap-3 group"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.07] flex items-center justify-center shrink-0 group-hover:border-blue-500/30 group-hover:bg-blue-500/5 transition-all">
-                  <Phone size={13} className="text-neutral-500 group-hover:text-blue-400 transition-colors" />
+                  <Phone
+                    size={13}
+                    className="text-neutral-500 group-hover:text-blue-400 transition-colors"
+                  />
                 </div>
                 <span className="text-[13px] text-neutral-500 group-hover:text-white transition-colors">
-                  080-4164 3659
+                  +91 78996 69501
                 </span>
               </a>
               <div className="flex items-start gap-3">
@@ -120,9 +123,9 @@ export default function Footer() {
                   <MapPin size={13} className="text-neutral-600" />
                 </div>
                 <span className="text-[13px] text-neutral-600 leading-snug">
-                  Sahakaranagar, Bangalore
+                  Northstar, Galleria Ambedkar Colony
                   <br />
-                  560092, India
+                  Yelahanka, Bangalore 560064
                 </span>
               </div>
             </div>

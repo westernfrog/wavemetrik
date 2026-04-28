@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, ChevronDown, ArrowRight, X, Mail, Phone } from "lucide-react";
@@ -10,7 +10,7 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 const products = [
   {
-    title: "MT-C24",
+    title: "Wifi Test Systems",
     href: "/products/mt-c24",
     badge: "Wi-Fi 7",
     description:
@@ -22,7 +22,7 @@ const products = [
     ],
   },
   {
-    title: "MT-Wave",
+    title: "MT-Wave Interference Gen",
     href: "/products/mt-wave",
     badge: "Interference Gen",
     description:
@@ -37,7 +37,6 @@ const products = [
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
 ];
 
@@ -48,17 +47,30 @@ export default function Header() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 30);
+      if (y > lastScrollY.current + 5 && y > 80) {
+        setHidden(true);
+      } else if (y < lastScrollY.current - 5 || y < 30) {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header
+    <motion.header
+      animate={{ y: hidden ? "-100%" : 0 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50",
         scrolled
           ? "bg-[#050505]/90 backdrop-blur-xl border-b border-white/[0.06] py-3"
           : "pt-3",
@@ -248,7 +260,7 @@ export default function Header() {
         onClick={() => setProductsOpen(false)}
       />
 
-      {/* ── Mobile Sheet ─────────────────────────────────────────── */}
+      {/* ── Mobile Sheet ────────────────────────────────────────── */}
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetContent
           side="right"
@@ -394,16 +406,16 @@ export default function Header() {
             >
               <div className="flex items-center gap-2.5 text-neutral-500 hover:text-neutral-300 transition-colors">
                 <Mail size={13} />
-                <span className="text-xs">support@wavemetrik.com</span>
+                <span className="text-xs">sales@wavemetrik.com</span>
               </div>
               <div className="flex items-center gap-2.5 text-neutral-500 hover:text-neutral-300 transition-colors">
                 <Phone size={13} />
-                <span className="text-xs">080-4164 3659</span>
+                <span className="text-xs">+91 78996 69501</span>
               </div>
             </motion.div>
           </div>
         </SheetContent>
       </Sheet>
-    </header>
+    </motion.header>
   );
 }

@@ -43,7 +43,7 @@ export default function HomePage() {
               }}
             />
           </div>
-          <div className="absolute top-1/2 left-1/2 w-[1400px] h-[800px] gradient-glow-brand blur-[140px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 opacity-30 animate-pulse-slow" />
+<div className="absolute top-1/2 left-1/2 w-[1400px] h-[800px] gradient-glow-brand blur-[140px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 opacity-30 animate-pulse-slow" />
 
           <div className="relative z-10 flex-1 flex items-center justify-center text-center px-4 w-full">
             <div className="flex flex-col items-center gap-6">

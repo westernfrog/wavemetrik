@@ -106,23 +106,23 @@ export default function ContactPage() {
                 {
                   Icon: Phone,
                   title: "Call Us",
-                  value: "080-4164 3659",
+                  value: "+91 78996 69501",
                   sub: "Monday – Friday",
                   detail: "Available for direct inquiries",
                 },
                 {
                   Icon: Mail,
                   title: "Email Us",
-                  value: "support@wavemetrik.com",
+                  value: "sales@wavemetrik.com",
                   sub: "24/7 Response Time",
                   detail: "General & Technical Support",
                 },
                 {
                   Icon: MapPin,
                   title: "Visit Us",
-                  value: "Bangalore, India",
-                  sub: "Sahakaranagar, 560092",
-                  detail: "Our Corporate Headquarters",
+                  value: "Yelahanka, Bangalore 560064",
+                  sub: "Northstar, Galleria Ambedkar Colony",
+                  detail: "Wavemetrik Technologies Pvt. Ltd.",
                 },
               ].map((item, i) => (
                 <FadeInItem key={i}>
@@ -296,10 +296,10 @@ export default function ContactPage() {
             </FadeUp>
             <FadeUp delay={0.18}>
               <a
-                href="mailto:support@wavemetrik.com"
+                href="mailto:sales@wavemetrik.com"
                 className="inline-flex h-14 items-center justify-center px-8 sm:px-10 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 hover:-translate-y-0.5 transition-all text-sm sm:text-[15px] shadow-[0_0_40px_rgba(255,255,255,0.1)]"
               >
-                support@wavemetrik.com
+                sales@wavemetrik.com
               </a>
             </FadeUp>
           </div>
