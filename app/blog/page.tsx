@@ -4,7 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { FadeUp, FadeIn, FadeInStagger, FadeInItem, ScaleIn } from "@/components/motion";
+import { motion } from "motion/react";
 import { ArrowRight, Calendar, User, Clock } from "lucide-react";
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 const blogPosts = [
   {
@@ -88,8 +92,7 @@ export default function BlogPage() {
 
       <main className="flex-1">
         {/* ── Hero Section ────────────────────────────────────────── */}
-        <section className="relative overflow-hidden pt-40 pb-16">
-          {/* Spotlight & Grid Background */}
+        <section className="relative overflow-hidden pt-36 sm:pt-40 pb-12 sm:pb-16">
           <div className="absolute inset-0 pointer-events-none z-0">
             <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[600px] bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.15)_0%,transparent_70%)]" />
             <div
@@ -101,130 +104,140 @@ export default function BlogPage() {
               }}
             />
           </div>
-
           <div className="absolute top-1/2 left-1/2 w-[1400px] h-[800px] gradient-glow-brand blur-[140px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 opacity-20 animate-pulse-slow" />
 
-          <div
-            className="relative z-10 text-center px-Support
-Documentation
-Technical Support
-Release Notes
-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full text-[11px] font-medium tracking-widest text-neutral-300 uppercase border border-white/10 bg-white/5">
+          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease }}
+              className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full text-[11px] font-medium tracking-widest text-neutral-300 uppercase border border-white/10 bg-white/5"
+            >
               Insights & Updates
-            </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter mb-8 leading-tight">
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1, delay: 0.2, ease }}
+              className="text-[clamp(2.8rem,10vw,6rem)] font-medium tracking-tighter mb-8 leading-tight"
+            >
               Our Journal
-              {/* <span className="gradient-text-brand italic pe-4 inline-block">
-            
-              </span> */}
-            </h1>
-            <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.45, ease }}
+              className="text-neutral-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            >
               Exploring the frontiers of wireless technology, RF engineering,
               and the future of connectivity.
-            </p>
+            </motion.p>
           </div>
         </section>
 
         {/* ── Featured Post ───────────────────────────────────────── */}
-        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-32 mt-10 relative z-10">
-          <Link href={`/blog/${blogPosts[0].id}`} className="group block">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-transparent border-none p-0 transition-colors">
-              <div className="relative aspect-square overflow-hidden bg-neutral-900">
-                <Image
-                  src={blogPosts[0].image}
-                  alt={blogPosts[0].title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-blue-500 text-xs font-bold uppercase tracking-widest">
-                    {blogPosts[0].category}
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-neutral-700" />
-                  <span className="text-neutral-500 text-xs uppercase tracking-widest">
-                    {blogPosts[0].readTime}
-                  </span>
+        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-24 sm:mb-32 mt-8 sm:mt-10 relative z-10">
+          <ScaleIn>
+            <Link href={`/blog/${blogPosts[0].id}`} className="group block">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <div className="relative aspect-square overflow-hidden bg-neutral-900">
+                  <Image
+                    src={blogPosts[0].image}
+                    alt={blogPosts[0].title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
-                <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 group-hover:text-blue-400 transition-colors leading-tight">
-                  {blogPosts[0].title}
-                </h2>
-                <p className="text-neutral-400 text-lg leading-relaxed mb-8 line-clamp-3">
-                  {blogPosts[0].excerpt}
-                </p>
-                <div className="flex items-center justify-between mt-auto pt-8 border-t border-white/5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center">
-                      <User size={16} className="text-neutral-400" />
-                    </div>
-                    <span className="text-sm text-neutral-300 font-medium">
-                      {blogPosts[0].author}
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="text-blue-500 text-xs font-bold uppercase tracking-widest">
+                      {blogPosts[0].category}
+                    </span>
+                    <span className="w-1 h-1 rounded-full bg-neutral-700" />
+                    <span className="text-neutral-500 text-xs uppercase tracking-widest">
+                      {blogPosts[0].readTime}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-white font-medium group-hover:gap-3 transition-all">
-                    Read Article{" "}
-                    <ArrowRight size={16} className="text-blue-500" />
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-6 group-hover:text-blue-400 transition-colors leading-tight">
+                    {blogPosts[0].title}
+                  </h2>
+                  <p className="text-neutral-400 text-base sm:text-lg leading-relaxed mb-8 line-clamp-3">
+                    {blogPosts[0].excerpt}
+                  </p>
+                  <div className="flex items-center justify-between mt-auto pt-8 border-t border-white/5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center">
+                        <User size={16} className="text-neutral-400" />
+                      </div>
+                      <span className="text-sm text-neutral-300 font-medium">
+                        {blogPosts[0].author}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-white font-medium group-hover:gap-3 transition-all">
+                      Read Article{" "}
+                      <ArrowRight size={16} className="text-blue-500" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </ScaleIn>
         </section>
 
         {/* ── Blog Grid ─────────────────────────────────────────── */}
         <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+          <FadeInStagger
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 sm:gap-x-12 gap-y-14 sm:gap-y-20"
+            stagger={0.08}
+          >
             {blogPosts.slice(1).map((post) => (
-              <Link
-                key={post.id}
-                href={`/blog/${post.id}`}
-                className="group flex flex-col h-full bg-transparent border-none p-0 transition-all"
-              >
-                <div className="relative aspect-square overflow-hidden bg-neutral-900 mb-8 transition-all">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
-                      {post.category}
-                    </span>
+              <FadeInItem key={post.id}>
+                <Link
+                  href={`/blog/${post.id}`}
+                  className="group flex flex-col h-full"
+                >
+                  <div className="relative aspect-square overflow-hidden bg-neutral-900 mb-7 sm:mb-8">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
+                        {post.category}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-col flex-1">
-                  <div className="flex items-center gap-3 mb-4 text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
-                    <Calendar size={12} />
-                    <span>{post.date}</span>
-                    <span className="w-1 h-1 rounded-full bg-neutral-700" />
-                    <Clock size={12} />
-                    <span>{post.readTime}</span>
+                  <div className="flex flex-col flex-1">
+                    <div className="flex items-center gap-3 mb-4 text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+                      <Calendar size={12} />
+                      <span>{post.date}</span>
+                      <span className="w-1 h-1 rounded-full bg-neutral-700" />
+                      <Clock size={12} />
+                      <span>{post.readTime}</span>
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-medium tracking-tight mb-4 group-hover:text-blue-400 transition-colors line-clamp-2 leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="text-neutral-400 text-[15px] leading-relaxed mb-6 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                    <div className="mt-auto flex items-center gap-2 text-xs font-bold text-white uppercase tracking-widest group-hover:gap-3 transition-all">
+                      Read More <ArrowRight size={14} className="text-blue-500" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-medium tracking-tight mb-4 group-hover:text-blue-400 transition-colors line-clamp-2 leading-snug">
-                    {post.title}
-                  </h3>
-                  <p className="text-neutral-400 text-[15px] leading-relaxed mb-6 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-auto flex items-center gap-2 text-xs font-bold text-white uppercase tracking-widest group-hover:gap-3 transition-all">
-                    Read More <ArrowRight size={14} className="text-blue-500" />
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </FadeInItem>
             ))}
-          </div>
+          </FadeInStagger>
         </section>
 
         {/* ── Newsletter Section ────────────────────────────────── */}
         <section
-          className="mt-40 py-32 relative text-center overflow-hidden"
+          className="mt-32 sm:mt-40 py-24 sm:py-32 relative text-center overflow-hidden"
           style={{ backgroundColor: "#03050A" }}
         >
-          {/* Broad vertical column glows — "stage spotlight" effect */}
           <div className="absolute inset-0 flex pointer-events-none">
             {Array.from({ length: 8 }).map((_, i) => (
               <div
@@ -233,37 +246,41 @@ Release Notes
                 style={{
                   background:
                     "linear-gradient(180deg, transparent 0%, rgba(0,50,160,0.05) 15%, rgba(0,80,210,0.09) 50%, rgba(0,50,160,0.05) 85%, transparent 100%)",
-                  borderRight:
-                    i < 7 ? "1px solid rgba(255,255,255,0.025)" : "none",
+                  borderRight: i < 7 ? "1px solid rgba(255,255,255,0.025)" : "none",
                 }}
               />
             ))}
           </div>
-          {/* Subtle center radial glow */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_50%_50%,rgba(0,40,130,0.08),transparent)] pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white leading-[1.1] mb-6">
-              Stay updated on Wi-Fi innovation
-            </h2>
-            <p className="text-neutral-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join our newsletter to receive the latest industry insights and
-              technical deep-dives directly to your inbox.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:border-blue-500/50 transition-colors backdrop-blur-sm"
-                required
-              />
-              <button
-                type="submit"
-                className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neutral-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] active:scale-95 whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </form>
+            <FadeUp>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-medium tracking-tight text-white leading-[1.1] mb-6">
+                Stay updated on Wi-Fi innovation
+              </h2>
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <p className="text-neutral-400 text-base sm:text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+                Join our newsletter to receive the latest industry insights and
+                technical deep-dives directly to your inbox.
+              </p>
+            </FadeUp>
+            <FadeUp delay={0.18}>
+              <form className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mx-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white text-sm focus:outline-none focus:border-blue-500/50 transition-colors backdrop-blur-sm"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neutral-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] active:scale-95 whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </FadeUp>
           </div>
         </section>
       </main>
