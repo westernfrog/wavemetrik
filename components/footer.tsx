@@ -22,8 +22,16 @@ function XIcon() {
 }
 
 const solutions = [
-  { label: "Wifi Test Systems", tag: "Wi-Fi 7", href: "/products/mt-c24" },
-  { label: "MT-Wave", tag: "Interference Gen", href: "/products/mt-wave" },
+  {
+    label: "Wifi 7 Client Emulators",
+    tag: "Wi-Fi 7",
+    href: "/products/mt-c24",
+  },
+  {
+    label: "Wifi Interference Generator",
+    tag: "Interference Gen",
+    href: "/products/mt-wave",
+  },
 ];
 
 const companyLinks = [

@@ -10,7 +10,7 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 const products = [
   {
-    title: "Wifi Test Systems",
+    title: "Wifi 7 Client Emulators",
     href: "/products/mt-c24",
     badge: "Wi-Fi 7",
     description:
@@ -22,7 +22,7 @@ const products = [
     ],
   },
   {
-    title: "MT-Wave Interference Gen",
+    title: "Wifi Interference Generator",
     href: "/products/mt-wave",
     badge: "Interference Gen",
     description:
